@@ -1,8 +1,10 @@
 package deliverySystem.moacall.repository;
 
 import deliverySystem.moacall.domain.Order;
+import deliverySystem.moacall.domain.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -17,6 +19,7 @@ public class OrderRepository {
 
     private final EntityManager em;
 
+    @Transactional
     public void save(Order order) {
         em.persist(order);
     }
@@ -47,6 +50,19 @@ public class OrderRepository {
 
     public List<Order> findAllWithMember() {
         return em.createQuery("select distinct o from Order o join fetch o.member m", Order.class)
+                .getResultList();
+
+    }
+    public List<Order> findAllWithAccept() {
+        return em.createQuery("select distinct o from Order o join fetch o.member m where o.orderStatus = :orderStatus", Order.class)
+                .setParameter("orderStatus", OrderStatus.COOKING)
+                .getResultList();
+
+    }
+
+    public List<Order> findAllWithDispatch() {
+        return em.createQuery("select distinct o from Order o join fetch o.member m where o.orderStatus = :orderStatus", Order.class)
+                .setParameter("orderStatus", OrderStatus.AFTER_ACCEPT)
                 .getResultList();
 
     }

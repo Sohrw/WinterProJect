@@ -12,8 +12,20 @@
       </select>
     </div>
     <div class="form-group">
-      <label th:for="clientAddress">배송 목적지</label>
-      <input type="text" th:field="*{clientAddress}" class="form-control" placeholder="배송 목적지를 입력하세요">
+      <label th:for="clientAddress">배송 목적지(시)</label>
+      <input type="text" th:field="*{clientCity}" class="form-control" placeholder="배송 목적지를 입력하세요">
+    </div>
+    <div class="form-group">
+      <label th:for="clientAddress">배송 목적지(거리)</label>
+      <input type="text" th:field="*{clientStreet}" class="form-control" placeholder="배송 목적지를 입력하세요">
+    </div>
+    <div class="form-group">
+      <label th:for="clientAddress">배송 목적지(우편번호)</label>
+      <input type="text" th:field="*{clientZipcode}" class="form-control" placeholder="배송 목적지를 입력하세요">
+    </div>
+    <div class="form-group">
+      <label th:for="clientAddress">배송 목적지(나머지)</label>
+      <input type="text" th:field="*{clientDetailAddress}" class="form-control" placeholder="배송 목적지를 입력하세요">
     </div>
     <div class="form-group">
       <label th:for="clientPrice">전체 주문 금액</label>

@@ -23,10 +23,10 @@ public class OrderService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Long order(Long memberId, Address clientAddress, String memo, int clientPrice, int deliveryPrice, PaymentType paymentType) {
+    public Long order(Long memberId, String clientCity, String clientStreet, String clientZipcode, String clientDetailAddress, String memo, int clientPrice, int deliveryPrice, PaymentType paymentType) {
         Member member = memberRepository.findOne(memberId);
 
-        Order order = Order.createOrder(member, memo, clientAddress, clientPrice, deliveryPrice, paymentType);
+        Order order = Order.createOrder(member, memo, clientCity, clientStreet, clientZipcode, clientDetailAddress, clientPrice, deliveryPrice, paymentType);
 
         orderRepository.save(order);
         return order.getId();

@@ -10,7 +10,10 @@ import lombok.Setter;
 @Getter @Setter
 public class OrderForm {
 
-    private Address clientAddress;
+    private String clientCity;
+    private String clientStreet;
+    private String clientZipcode;
+    private String clientDetailAddress;
     private int clientPrice;
     private int deliveryPrice;
     private String memo;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -38,10 +39,11 @@ public class OrderController {
         if (result.hasErrors()) {
             return "order/createOrderForm";
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-        orderService.order(memberId, form.getClientAddress(), form.getMemo(), form.getClientPrice(), form.getDeliveryPrice(), form.getPaymentType() );
+        orderService.order(memberId, form.getClientCity(), form.getClientStreet(), form.getClientZipcode(), form.getClientDetailAddress(), form.getMemo(), form.getClientPrice(), form.getDeliveryPrice(), form.getPaymentType() );
 
-        return "redirect:/order";
+        return "redirect:/";
     }
 
 
