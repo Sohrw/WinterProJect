@@ -59,6 +59,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+
+
     void login() {
         Log.w("login", "Trying to Login");
         try {

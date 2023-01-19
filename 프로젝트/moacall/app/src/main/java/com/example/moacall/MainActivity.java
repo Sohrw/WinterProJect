@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Bundle mBundle;
     TabLayout tabs;
     Fragment fragment1;
     Fragment fragment2;
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void fragBtnClick(Bundle bundle) {
+        this.mBundle = bundle;
     }
 
 }
