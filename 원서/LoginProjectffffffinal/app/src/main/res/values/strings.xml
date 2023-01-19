@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Login Project ffffffinal</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_acitivity_login">acitivity_login</string>
+    <string name="title_activity_signup">activity_signup</string>
+</resources>
