@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:id="@+id/listview_layout"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +36,8 @@
             android:layout_height="50dp"
             android:layout_weight="3"
             android:orientation="horizontal"
+            android:id="@+id/map_layout"
+            android:descendantFocusability="beforeDescendants"
             >
 
             <TextView
@@ -47,8 +51,9 @@
                 android:id="@+id/mapButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:text="지도"
-                ></Button>
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="지도"></Button>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

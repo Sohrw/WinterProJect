@@ -2,10 +2,14 @@ package com.example.moacall;
 
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.skt.Tmap.TMapView;
+
+import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 public class MapViewActivity extends AppCompatActivity {
@@ -17,9 +21,13 @@ public class MapViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapview);
 
-        MapView mapView = new MapView(this);
+        TMapView tMapView = new TMapView(this);
 
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);
+        tMapView.setSKTMapApiKey("l7xx740ca7e62b374e86b4634ff36d292130");
+        LinearLayout linearLayoutTmap = (LinearLayout) findViewById(R.id.map_view);
+
+        linearLayoutTmap.addView(tMapView);
+
+
     }
 }

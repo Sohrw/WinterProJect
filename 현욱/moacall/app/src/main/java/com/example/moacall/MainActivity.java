@@ -2,10 +2,13 @@ package com.example.moacall;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.moacall.topElement.acceptFrag;
 import com.example.moacall.topElement.chattingFrag;
@@ -16,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Bundle mBundle;
     TabLayout tabs;
     Fragment fragment1;
     Fragment fragment2;
@@ -24,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment5;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         tabs = findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setText("접수"));
@@ -45,26 +51,33 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 Log.d("MainActivity", "Seleted Tab : " + position);
 
                 Fragment seleted = null;
-                switch (position) {
-                    case 0:
-                        seleted = fragment1;
-                    case 1:
-                        seleted = fragment2;
-                    case 2:
-                        seleted = fragment3;
-                    case 3:
-                        seleted = fragment4;
-                    case 4:
-                        seleted = fragment5;
 
+                if (position == 0) {
+                    seleted = fragment1;
                 }
+                else if (position == 1) {
+                    seleted = fragment2;
+                }
+                else if (position == 2) {
+                    seleted = fragment3;
+                }
+                else if (position == 3) {
+                    seleted = fragment4;
+                }
+                else if (position == 4) {
+                    seleted = fragment5;
+                }
+
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, seleted).commit();
+
             }
 
             @Override
@@ -78,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
+
+    public void fragBtnClick(Bundle bundle) {
+        this.mBundle = bundle;
+    }
+
+
 
 }

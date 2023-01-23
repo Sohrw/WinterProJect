@@ -15,6 +15,6 @@ public class settingFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
-        return inflater.inflate(R.layout.listview_item, container, false);
+        return inflater.inflate(R.layout.setting_activity, container, false);
     }
 }

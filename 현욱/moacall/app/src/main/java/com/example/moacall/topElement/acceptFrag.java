@@ -1,11 +1,21 @@
 package com.example.moacall.topElement;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,40 +27,190 @@ import com.example.moacall.AcceptAdapter;
 import com.example.moacall.AcceptData;
 import com.example.moacall.Address;
 import com.example.moacall.DeliveryStatus;
+import com.example.moacall.MainActivity;
+import com.example.moacall.MapViewActivity;
+import com.example.moacall.PaymentType;
 import com.example.moacall.R;
+import com.example.moacall.RetrofitExService;
 
+import net.daum.mf.map.api.MapView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class acceptFrag extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class acceptFrag extends Fragment implements View.OnClickListener{
 
     ArrayList<AcceptData> acceptData;
     ListView acceptView;
     private AcceptAdapter acceptAdapter;
-
+    ScrollView scrollView;
+    MainActivity activity;
+    Context context;
+    AcceptData dataDTO;
+    LinearLayout ll;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+        dataDTO = null;
+        activity = (MainActivity) getActivity();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
 
+        inflater = LayoutInflater.from(getActivity());
         View rootView = inflater.inflate(R.layout.accept, container, false);
+        acceptData = new ArrayList<>();
+        InitializeData(acceptData);
+//        Timer timer = new Timer();
+//        TimerTask timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                InitializeData(acceptData);
+//                acceptAdapter.notifyDataSetChanged();
+//            }
+//        };
+//
+//        timer.schedule(timerTask,0, 1000 );
 
-        this.InitializeData();
+//        View containView = inflater.inflate(R.layout.listview_item, container, false);
 
         acceptView = (ListView) rootView.findViewById(R.id.listView_accept);
         acceptAdapter = new AcceptAdapter(getContext(), acceptData);
+        scrollView = (ScrollView) rootView.findViewById(R.id.scrollView_accept);
 
+//        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.map_layout);
+//
+//        ll.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        Button mapButton = (Button) acceptView.findViewById(R.id.mapButton);
+
+        if (mapButton != null ) {
+
+            mapButton.setFocusableInTouchMode(true);
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(acceptView.getContext(), "sss", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Log.d("null", "null");
+        }
+
+//        ListView ll = (ListView) rootView.findViewById(R.id.listView_accept);
+//        mapButton = containView.findViewById(R.id.mapButton);
+//        if (mapButton == null) {
+//            Log.d("NULL", "NULL");
+//        } else {
+//            Log.d("Not null", "not null ");
+//            Log.d("btn", mapButton.toString());
+//            mapButton.setOnClickListener(this);
+//            mapButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mapButton.setFocusableInTouchMode(true);
+//                    Log.d("clicked", "clicked");
+//                    Toast.makeText(view.getContext(), "지도가 눌렸어요!", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            });
+//
+//        }
+
+//        LinearLayout ll = (LinearLayout) acceptView.findViewById(R.id.listview_layout);
+//
+//        ll.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+
+//        mapButton.setFocusableInTouchMode(true);
+//        mapButton.setOnClickListener(this::onClick);
 
 
         acceptView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String selectedItem = String.valueOf(adapterView.getItemAtPosition(position));
-                Toast.makeText(adapterView.getContext(), "Clicked : " + position + " " + selectedItem, Toast.LENGTH_SHORT).show();
+//                Button mapButton = (Button) adapterView.findViewById(R.id.mapButton);
+//                if (mapButton != null ) {
+//                    mapButton.setFocusableInTouchMode(true);
+//                    mapButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Toast.makeText(adapterView.getContext(), "sss", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                } else {
+//                    Log.d("null", "null");
+//                }
+                Toast.makeText(adapterView.getContext(), "배차되었습니다!", Toast.LENGTH_SHORT).show();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(RetrofitExService.url)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RetrofitExService retrofitExService = retrofit.create(RetrofitExService.class);
+                Log.d("SendToAccept", "sendToAccept");
+
+
+
+                retrofitExService.dispatchOrder(acceptData.get(position).getId()).enqueue(new Callback<List<AcceptData>>() {
+                    @Override
+                    public void onResponse(Call<List<AcceptData>> call, Response<List<AcceptData>> response) {
+                        List<AcceptData> data = response.body();
+
+                        if (data != null) {
+                            InitializeData(acceptData);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<AcceptData>> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
+
+
+
+
             }
         });
+
+        acceptView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                scrollView.requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+        int totalHeight = 0;
+        for (int i = 0; i< acceptAdapter.getCount(); i++) {
+            View listItem = acceptAdapter.getView(i, null, acceptView);
+            listItem.measure(0,0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = acceptView.getLayoutParams();
+        params.height = totalHeight + (acceptView.getDividerHeight() * (acceptAdapter.getCount() -1));
+        acceptView.setLayoutParams(params);
         acceptView.setAdapter(acceptAdapter);
 
 
@@ -58,18 +218,53 @@ public class acceptFrag extends Fragment {
         return rootView;
     }
 
-    public void InitializeData() {
+    @Override
+    public void onClick(View view) {
+        View parentView = (View) view.getParent();
+        Toast.makeText(view.getContext(), "지도가 눌렸어요!", Toast.LENGTH_SHORT).show();
 
-        acceptData = new ArrayList<>();
-        Address clientAddress = new Address("a","b","c");
-        Address foodAddress = new Address("a","b","c");
+    }
 
-        acceptData.add(new AcceptData(1L, LocalDateTime.now().minusMinutes(20), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
-        acceptData.add(new AcceptData(2L, LocalDateTime.now().minusMinutes(30), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
-        acceptData.add(new AcceptData(3L, LocalDateTime.now().minusMinutes(40), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
-        acceptData.add(new AcceptData(4L, LocalDateTime.now().minusMinutes(50), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
-        acceptData.add(new AcceptData(5L, LocalDateTime.now().minusMinutes(60), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
-        acceptData.add(new AcceptData(6L, LocalDateTime.now().minusMinutes(70), LocalDateTime.now(), foodAddress, clientAddress, "ClientMemo", 10000, 6700,DeliveryStatus.WAIT_FOR_COOKING));
+    public void InitializeData(ArrayList<AcceptData> acceptData) {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(RetrofitExService.url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitExService retrofitExService = retrofit.create(RetrofitExService.class);
+        Log.d("frag", "frag");
+        retrofitExService.getOrdersAcceptData().enqueue(new Callback<List<AcceptData>>() {
+            @Override
+            public void onResponse(Call<List<AcceptData>> call, Response<List<AcceptData>> response) {
+                if(response.isSuccessful()) {
+                    List<AcceptData> data = response.body();
+
+                    if(data != null) {
+                        for (int i = 0; i< data.size(); i++) {
+                            String[] foodArray = data.get(i).getFoodAddress().split(" ");
+                            String[] clientArray = data.get(i).getClientAddress().split(" ");
+
+                            acceptData.add(new AcceptData(data.get(i).getId(), data.get(i).getStartTime(), data.get(i).getAcceptTime(), new Address(foodArray[0], foodArray[1], foodArray[2], foodArray[3]), new Address(clientArray[0], clientArray[1], clientArray[2], clientArray[3]),data.get(i).getClientMemo(), data.get(i).getClientPrice(), data.get(i).getDeliveryPrice(), data.get(i).getStatus(), data.get(i).getPaymentType()));
+                            acceptAdapter.notifyDataSetChanged();
+
+
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AcceptData>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+
+
+
+
 
     }
 

@@ -5,12 +5,36 @@
     android:layout_height="match_parent"
     tools:context="com.example.moacall.topElement.acceptFrag">
 
-
-    <ListView
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView_accept"></ListView>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/scrollView_accept">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ListView
+                android:id="@+id/listView_accept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="auto"
+                android:focusableInTouchMode="true">
+
+            </ListView>
+
+
+        </FrameLayout>
+
+
+
+
+
+
+
+    </ScrollView>
+
 
 
 </FrameLayout>

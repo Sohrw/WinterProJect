@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
 
     <application
 
@@ -23,6 +24,7 @@
         <activity android:name=".ThirdActivity"></activity>
         <activity android:name=".Setting"></activity>
         <activity android:name=".Chatting"></activity>
+        <activity android:name=".MapViewActivity" />
 
 
         <activity
@@ -41,7 +43,7 @@
                 android:value="" />
             <meta-data
                 android:name="com.kakao.sdk.AppKey"
-                android:value="6a3acf8693fc289f3156b7f0a6f49625"></meta-data>
+                android:value="780601aa2dcc5f81cecdc323a26ac0c9"></meta-data>
         </activity>
 
 

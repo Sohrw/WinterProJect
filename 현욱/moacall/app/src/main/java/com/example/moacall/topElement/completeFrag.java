@@ -16,6 +16,6 @@ public class completeFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
-        return inflater.inflate(R.layout.listview_item, container, false);
+        return inflater.inflate(R.layout.complete_activity, container, false);
     }
 }

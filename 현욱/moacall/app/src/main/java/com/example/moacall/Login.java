@@ -51,13 +51,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 login();
                 break;
             case R.id.join_btn:
-                Intent join_intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.0.4:8080/join/new"));
+                Intent join_intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.0.4:8080/members/new"));
                 startActivity(join_intent);
                 finish();
                 break;
         }
 
     }
+
+
 
     void login() {
         Log.w("login", "Trying to Login");

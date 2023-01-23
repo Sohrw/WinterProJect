@@ -2,22 +2,34 @@ package com.example.moacall;
 
 public class Address {
 
-    private String dong;
+    private String city;
+
+
+    private String street;
     private String zipcode;
     private String detailAddress;
 
-    public Address(String dong, String zipcode, String detailAddress) {
-        this.dong = dong;
+    public Address(String city, String street, String zipcode, String detailAddress) {
+        this.city = city;
+        this.street = street;
         this.zipcode = zipcode;
         this.detailAddress = detailAddress;
     }
 
-    public String getDong() {
-        return dong;
+    public String getCity() {
+        return city;
     }
 
-    public void setDong(String dong) {
-        this.dong = dong;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getstreet() {
+        return street;
+    }
+
+    public void setstreet(String street) {
+        this.street = street;
     }
 
     public String getZipcode() {
@@ -38,8 +50,10 @@ public class Address {
 
     @Override
     public String toString() {
-        return "주소 : " + dong + " " +
+        return city + " "+ street + " " +
                 zipcode + " " +
                 detailAddress;
     }
+
+
 }
