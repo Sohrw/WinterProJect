@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login();
                 break;
             case R.id.btn_register:
-                Intent join_intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.0.4:8080/members/new"));
+                Intent join_intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.35.218:8080/members/new"));
                 startActivity(join_intent);
                 finish();
                 break;
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.0.4:8080/login");
+                URL url = new URL("http://192.168.35.218:8080/login");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
