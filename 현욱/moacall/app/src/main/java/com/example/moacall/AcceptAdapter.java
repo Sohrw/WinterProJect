@@ -77,14 +77,20 @@ public class AcceptAdapter extends BaseAdapter implements AdapterView.OnItemClic
             TextView typeOfPaymentText = (TextView) converView.findViewById(R.id.typeOfPaymentText);
             TextView priceText = (TextView) converView.findViewById(R.id.priceText);
             TextView clientAddressText = (TextView) converView.findViewById(R.id.clinetAddressText);
+
             TextView clientRefectorAddressText = (TextView) converView.findViewById(R.id.clientRefectorAddressText);
             TextView memoText = (TextView) converView.findViewById(R.id.memoText);
             Button mapButton = (Button) converView.findViewById(R.id.mapButton);
+            String longitude = acceptData.get(position).getLongitude();
+            String latitude = acceptData.get(position).getLatitude();
             mapButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, MapViewActivity.class);
 
+                    Log.d("LOCATION", latitude + " " + longitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("latitude", latitude);
                     ((MainActivity)context).startActivity(intent);
                 }
             });
@@ -100,9 +106,22 @@ public class AcceptAdapter extends BaseAdapter implements AdapterView.OnItemClic
             startTimeText.setText(compareMinute(startTime, presentTime) + "분");
 
             acceptText.setText("20분 " + " / 접수 : " + acceptTime);
-            summaryAddressText.setText(acceptData.get(position).getFoodAddress() + "/금방나옴/" + "9.99km");
+            summaryAddressText.setText(acceptData.get(position).getFoodName() + "/금방나옴/" + "9.99km");
 
-            typeOfPaymentText.setText("선결제");
+            switch (acceptData.get(position).getPaymentType()) {
+                case PRE_PAYMENT:
+                    typeOfPaymentText.setText("선결제");
+                    break;
+                case CARD:
+                    typeOfPaymentText.setText("카드");
+                    break;
+                case CASH:
+                    typeOfPaymentText.setText("현금");
+                    break;
+                default:
+                    typeOfPaymentText.setText("NULL");
+            }
+
             priceText.setText(acceptData.get(position).getClientPrice() + "/" + acceptData.get(position).getDeliveryPrice());
             clientAddressText.setText(acceptData.get(position).getClientAddress());
             memoText.setText(acceptData.get(position).getClientMemo());
@@ -126,41 +145,66 @@ public class AcceptAdapter extends BaseAdapter implements AdapterView.OnItemClic
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
+
         }
         else if(date1.length() == 25) {
              startDate = LocalDateTime.parse(date1, formatter2).toLocalTime();
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
         }
         else if(date1.length() == 24) {
              startDate = LocalDateTime.parse(date1, formatter3).toLocalTime();
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
         }
         else if(date1.length() == 23) {
              startDate = LocalDateTime.parse(date1, formatter4).toLocalTime();
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
         }
         else if(date1.length() == 22) {
              startDate = LocalDateTime.parse(date1, formatter5).toLocalTime();
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
         } else {
              startDate = LocalDateTime.parse(date1, formatter5).toLocalTime();
             LocalTime endDate = date2.toLocalTime();
             Duration diff = Duration.between(startDate, endDate);
             long diffMinute = diff.toMinutes();
-            return diffMinute;
+            if (diffMinute < 0) {
+                return diffMinute * -1;
+            } else {
+                return diffMinute;
+            }
         }
 
 

@@ -39,6 +39,7 @@ public class MemberController {
         member.setUserId(form.getUserId());
         member.setFoodAddress(address);
 
+
         memberService.join(member);
         return "redirect:/";
     }

@@ -66,4 +66,18 @@ public class OrderRepository {
                 .getResultList();
 
     }
+
+    public List<Order> findAllWithDelivery() {
+        return em.createQuery("select distinct o from Order o join fetch o.member m where o.orderStatus = :orderStatus", Order.class)
+                .setParameter("orderStatus", OrderStatus.DELIVERY)
+                .getResultList();
+
+    }
+
+    public List<Order> findAllWithComplete() {
+        return em.createQuery("select distinct o from Order o join fetch o.member m where o.orderStatus = :orderStatus", Order.class)
+                .setParameter("orderStatus", OrderStatus.COMPLITE)
+                .getResultList();
+
+    }
 }

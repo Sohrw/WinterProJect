@@ -15,6 +15,9 @@ public class AcceptData implements Serializable {
 
     private String acceptTime;
 
+    @SerializedName("foodName")
+    private String foodName;
+
     @SerializedName("foodAddress")
     private Address foodAddress;
 
@@ -30,12 +33,18 @@ public class AcceptData implements Serializable {
     private DeliveryStatus status;
     @SerializedName("paymentType")
     private PaymentType paymentType;
+
+    @SerializedName("latitude")
+    private String latitude;
+    @SerializedName("longitude")
+    private String longitude;
     
 
-    public AcceptData(Long id, String startTime, String acceptTime, Address foodAddress, Address clientAddress, String clientMemo, int clientPrice, int deliveryPrice, DeliveryStatus status, PaymentType paymentType) {
+    public AcceptData(Long id, String startTime, String acceptTime, String foodName, Address foodAddress, Address clientAddress, String clientMemo, int clientPrice, int deliveryPrice, DeliveryStatus status, PaymentType paymentType, String latitude, String longitude) {
         this.id = id;
         this.startTime = startTime;
         this.acceptTime = acceptTime;
+        this.foodName = foodName;
         this.foodAddress = foodAddress;
         this.clientAddress = clientAddress;
         this.clientMemo = clientMemo;
@@ -43,6 +52,8 @@ public class AcceptData implements Serializable {
         this.deliveryPrice = deliveryPrice;
         this.status = status;
         this.paymentType = paymentType;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
 
@@ -56,6 +67,30 @@ public class AcceptData implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public void setStartTime(String startTime) {

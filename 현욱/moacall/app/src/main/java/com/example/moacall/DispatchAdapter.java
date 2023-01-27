@@ -100,12 +100,28 @@ public class DispatchAdapter extends BaseAdapter implements AdapterView.OnItemCl
         LocalDateTime presentTime = LocalDateTime.now();
         startTimeText.setText(compareMinute(startTime, presentTime) + "분");
         acceptText.setText("20분 " + " / 접수 : " + acceptTime);
-        summaryAddressText.setText(acceptData.get(position).getFoodAddress() + "/금방나옴/" + "9.99km");
+        summaryAddressText.setText(acceptData.get(position).getFoodName() + "/금방나옴/" + "9.99km");
 
-        typeOfPaymentText.setText("선결제");
+        switch (acceptData.get(position).getPaymentType()) {
+            case PRE_PAYMENT:
+                typeOfPaymentText.setText("선결제");
+                break;
+            case CARD:
+                typeOfPaymentText.setText("카드");
+                break;
+            case CASH:
+                typeOfPaymentText.setText("현금");
+                break;
+            default:
+                typeOfPaymentText.setText("NULL");
+        }
         priceText.setText(acceptData.get(position).getClientPrice() + "/" + acceptData.get(position).getDeliveryPrice());
         clientAddressText.setText(acceptData.get(position).getClientAddress());
         memoText.setText(acceptData.get(position).getClientMemo());
+        if (acceptData.get(position).getStatus() == DeliveryStatus.DELIVERY) {
+            pickupButton.setEnabled(false);
+            view.setBackgroundColor(Color.GREEN);
+        }
 
         return view;
 
@@ -118,7 +134,11 @@ public class DispatchAdapter extends BaseAdapter implements AdapterView.OnItemCl
         LocalTime endDate = date2.toLocalTime();
         Duration diff = Duration.between(startDate, endDate);
         long diffMinute = diff.toMinutes();
-        return diffMinute;
+        if (diffMinute < 0) {
+            return diffMinute * -1;
+        } else {
+            return diffMinute;
+        }
 
     }
 

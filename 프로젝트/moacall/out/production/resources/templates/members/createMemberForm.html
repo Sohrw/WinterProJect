@@ -19,17 +19,19 @@
     <div class="form-group">
       <label th:for="city">도시를 입력하세요(가게만)</label>
       <input type="text" th:field="*{city}" class="form-control"
-             placeholder="주소를 입력하세요"> </div>
+             placeholder="주소를 입력하세요">
+      <input type="button" onclick="sample_DaumData()" value="우편번호 찾기">
+    </div>
     <div class="form-group">
-      <label th:for="street">주소를 입력하세요(가게만)</label>
+      <label th:for="street">거리를 입력하세요(가게만)</label>
       <input type="text" th:field="*{street}" class="form-control"
              placeholder="주소를 입력하세요"> </div>
     <div class="form-group">
-      <label th:for="zipcode">주소를 입력하세요(가게만)</label>
+      <label th:for="zipcode">우편번호를 입력하세요(가게만)</label>
       <input type="text" th:field="*{zipcode}" class="form-control"
              placeholder="주소를 입력하세요"> </div>
     <div class="form-group">
-      <label th:for="detailAddress">주소를 입력하세요(가게만)</label>
+      <label th:for="detailAddress">상세 주소를 입력하세요(가게만)</label>
       <input type="text" th:field="*{detailAddress}" class="form-control"
              placeholder="주소를 입력하세요"> </div>
     <div class="form-group">
@@ -47,4 +49,40 @@
   <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
 </body>
+<script>
+function sample_DaumData() {
+  new daum.Postcode({
+    oncomplete: function (data) {
+
+      var addr = '';
+      var extraAddr = '';
+
+      if (data.userSelectedType == 'R') {
+        addr = data.roadAddress;
+      } else {
+        addr = data.jibunAddress;
+      }
+
+      if (data.userSelectedType == 'R') {
+        if (daum.bname != '' && /[동|로|가]$/g.test(data.bname)) {
+          extraAddr += data.bname;
+        }
+        if (daum.buildingName != '' && data.apartment == 'Y') {
+          extraAddr += (extraAddr != '' ? ', ' + data.buildingName : data.buildingName);
+        }
+        if (extraAddr != '') {
+          extraAddr = ' (' + extraAddr + ')';
+        }
+        document.getElementById("detailAddress").value = extraAddr;
+      } else {
+        document.getElementById("zipcode").value = data.zonecode;
+        document.getElementById("street").value = addr;
+        document.getElementById("detailAddress").focus();
+
+      }
+    }
+  }).open();
+}
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>

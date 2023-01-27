@@ -37,4 +37,10 @@ public class Member {
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
+    private String latitude;
+
+    private String longitude;
+
+
+
 }

@@ -29,4 +29,13 @@ public interface RetrofitExService {
     @POST("/api/orderpick/{orderId}")
     Call<List<AcceptData>> pickUpOrder(@Path("orderId") Long orderId);
 
+    @GET("/api/orders/delivery")
+    Call<List<AcceptData>> getOrdersDeliveryData();
+
+    @GET("/api/orders/complete")
+    Call<List<AcceptData>> getOrdersCompleteData();
+
+    @POST("/api/ordercomplete/{orderId}")
+    Call<List<AcceptData>> completeOrder(@Path("orderId") Long orderId);
+
 }

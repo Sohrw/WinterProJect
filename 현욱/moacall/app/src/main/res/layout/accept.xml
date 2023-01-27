@@ -11,10 +11,7 @@
         android:fillViewport="true"
         android:id="@+id/scrollView_accept">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+
             <ListView
                 android:id="@+id/listView_accept"
                 android:layout_width="match_parent"
@@ -23,12 +20,6 @@
                 android:focusableInTouchMode="true">
 
             </ListView>
-
-
-        </FrameLayout>
-
-
-
 
 
 

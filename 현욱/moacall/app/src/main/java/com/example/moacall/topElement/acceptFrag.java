@@ -82,26 +82,13 @@ public class acceptFrag extends Fragment implements View.OnClickListener{
         View rootView = inflater.inflate(R.layout.accept, container, false);
         acceptData = new ArrayList<>();
         InitializeData(acceptData);
-//        Timer timer = new Timer();
-//        TimerTask timerTask = new TimerTask() {
-//            @Override
-//            public void run() {
-//                InitializeData(acceptData);
-//                acceptAdapter.notifyDataSetChanged();
-//            }
-//        };
-//
-//        timer.schedule(timerTask,0, 1000 );
 
-//        View containView = inflater.inflate(R.layout.listview_item, container, false);
 
         acceptView = (ListView) rootView.findViewById(R.id.listView_accept);
         acceptAdapter = new AcceptAdapter(getContext(), acceptData);
         scrollView = (ScrollView) rootView.findViewById(R.id.scrollView_accept);
 
-//        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.map_layout);
-//
-//        ll.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+
         Button mapButton = (Button) acceptView.findViewById(R.id.mapButton);
 
         if (mapButton != null ) {
@@ -117,32 +104,9 @@ public class acceptFrag extends Fragment implements View.OnClickListener{
             Log.d("null", "null");
         }
 
-//        ListView ll = (ListView) rootView.findViewById(R.id.listView_accept);
-//        mapButton = containView.findViewById(R.id.mapButton);
-//        if (mapButton == null) {
-//            Log.d("NULL", "NULL");
-//        } else {
-//            Log.d("Not null", "not null ");
-//            Log.d("btn", mapButton.toString());
-//            mapButton.setOnClickListener(this);
-//            mapButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mapButton.setFocusableInTouchMode(true);
-//                    Log.d("clicked", "clicked");
-//                    Toast.makeText(view.getContext(), "지도가 눌렸어요!", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            });
-//
-//        }
 
-//        LinearLayout ll = (LinearLayout) acceptView.findViewById(R.id.listview_layout);
-//
-//        ll.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
 
-//        mapButton.setFocusableInTouchMode(true);
-//        mapButton.setOnClickListener(this::onClick);
+
 
 
         acceptView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -242,12 +206,12 @@ public class acceptFrag extends Fragment implements View.OnClickListener{
 
                     if(data != null) {
                         for (int i = 0; i< data.size(); i++) {
-                            String[] foodArray = data.get(i).getFoodAddress().split(" ");
-                            String[] clientArray = data.get(i).getClientAddress().split(" ");
+                            String[] foodArray = data.get(i).getFoodAddress().split("/");
+                            String[] clientArray = data.get(i).getClientAddress().split("/");
 
-                            acceptData.add(new AcceptData(data.get(i).getId(), data.get(i).getStartTime(), data.get(i).getAcceptTime(), new Address(foodArray[0], foodArray[1], foodArray[2], foodArray[3]), new Address(clientArray[0], clientArray[1], clientArray[2], clientArray[3]),data.get(i).getClientMemo(), data.get(i).getClientPrice(), data.get(i).getDeliveryPrice(), data.get(i).getStatus(), data.get(i).getPaymentType()));
+                            acceptData.add(new AcceptData(data.get(i).getId(), data.get(i).getStartTime(), data.get(i).getAcceptTime(), data.get(i).getFoodName(), new Address(foodArray[0], foodArray[1], foodArray[2], foodArray[3]), new Address(clientArray[0], clientArray[1], clientArray[2], clientArray[3]),data.get(i).getClientMemo(), data.get(i).getClientPrice(), data.get(i).getDeliveryPrice(), data.get(i).getStatus(), data.get(i).getPaymentType() ,data.get(i).getLatitude(), data.get(i).getLongitude()));
                             acceptAdapter.notifyDataSetChanged();
-
+                            System.out.println(acceptData);
 
                         }
                     }

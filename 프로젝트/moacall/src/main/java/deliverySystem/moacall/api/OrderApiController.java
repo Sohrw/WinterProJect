@@ -68,6 +68,17 @@ public class OrderApiController {
 
     }
 
+    @PostMapping("api/ordercomplete/{orderId}")
+    public void orderDtoListForComplete(@PathVariable("orderId") Long orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.setOrderStatus(OrderStatus.COMPLITE);
+        if (order != null) {
+            orderRepository.save(order);
+        }
+
+
+    }
+
 
     @GetMapping("/api/orders/accept")
     public List<OrderDto> orderDtoListForAccept() {
@@ -81,6 +92,23 @@ public class OrderApiController {
     @GetMapping("/api/orders/dispatch")
     public List<OrderDto> orderDtoListForDispatch() {
         List<Order> allWithAccept = orderRepository.findAllWithDispatch();
+        return allWithAccept.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+    }
+
+    @GetMapping("/api/orders/delivery")
+    public List<OrderDto> orderDtoListForDelivery() {
+        List<Order> allWithAccept = orderRepository.findAllWithDelivery();
+        return allWithAccept.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+    }
+    @GetMapping("/api/orders/complete")
+    public List<OrderDto> orderDtoListForComplete() {
+        List<Order> allWithAccept = orderRepository.findAllWithComplete();
         return allWithAccept.stream()
                 .map(o -> new OrderDto(o))
                 .collect(Collectors.toList());
@@ -100,6 +128,8 @@ public class OrderApiController {
         private String memo;
         private double distance;
         private PaymentType paymentType;
+        private String latitude;
+        private String longitude;
 
         public OrderDto(Order order) {
             orderId = order.getId();
@@ -114,7 +144,8 @@ public class OrderApiController {
             distance = order.getDistance();
             foodAddress = order.getMember().getFoodAddress();
             paymentType = order.getPaymentType();
-
+            latitude = order.getLatitude();
+            longitude = order.getLongitude();
 
         }
 
