@@ -1,0 +1,127 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.moacall"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:4:5-83
+11-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:5:5-97
+12-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:5:22-78
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:6:5-95
+13-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:6:22-76
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:7:5-95
+14-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:7:22-76
+15
+16    <application
+16-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:9:5-51:19
+17        android:allowBackup="true"
+17-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:11:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.8.0] /Users/kwon/.gradle/caches/transforms-3/28a1708219c3158e49b329d141e5cfff/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+19        android:dataExtractionRules="@xml/data_extraction_rules"
+19-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:12:9-65
+20        android:debuggable="true"
+21        android:extractNativeLibs="false"
+22        android:fullBackupContent="@xml/backup_rules"
+22-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:14:9-54
+23        android:icon="@mipmap/ic_launcher"
+23-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:15:9-43
+24        android:label="@string/app_name"
+24-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:16:9-41
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:17:9-54
+26        android:supportsRtl="true"
+26-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:18:9-35
+27        android:testOnly="true"
+28        android:theme="@style/Theme.Moacall"
+28-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:19:9-45
+29        android:usesCleartextTraffic="true" >
+29-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:13:9-44
+30        <activity android:name="com.example.moacall.MainActivity" />
+30-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:22:9-59
+30-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:22:19-47
+31        <activity android:name="com.example.moacall.SecondActivity" />
+31-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:23:9-61
+31-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:23:19-49
+32        <activity android:name="com.example.moacall.ThirdActivity" />
+32-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:24:9-60
+32-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:24:19-48
+33        <activity android:name="com.example.moacall.Setting" />
+33-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:25:9-54
+33-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:25:19-42
+34        <activity android:name="com.example.moacall.Chatting" />
+34-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:26:9-55
+34-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:26:19-43
+35        <activity android:name="com.example.moacall.MapViewActivity" />
+35-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:27:9-53
+35-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:27:19-50
+36        <activity
+36-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:30:9-47:20
+37            android:name="com.example.moacall.Login"
+37-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:31:13-34
+38            android:exported="true"
+38-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:32:13-36
+39            android:label="@string/app_name"
+39-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:33:13-45
+40            android:theme="@style/Theme.Moacall" >
+40-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:34:13-49
+41            <intent-filter>
+41-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:35:13-39:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:36:17-69
+42-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:36:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:38:17-77
+44-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:38:27-74
+45            </intent-filter>
+46
+47            <meta-data
+47-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:41:13-43:36
+48                android:name="android.app.lib_name"
+48-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:42:17-52
+49                android:value="" />
+49-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:43:17-33
+50            <meta-data
+50-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:44:13-46:78
+51                android:name="com.kakao.sdk.AppKey"
+51-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:45:17-52
+52                android:value="780601aa2dcc5f81cecdc323a26ac0c9" />
+52-->/Users/kwon/AndroidStudioProjects/moacall/app/src/main/AndroidManifest.xml:46:17-65
+53        </activity>
+54
+55        <provider
+55-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+56            android:name="androidx.startup.InitializationProvider"
+56-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+57            android:authorities="com.example.moacall.androidx-startup"
+57-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+58            android:exported="false" >
+58-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+59            <meta-data
+59-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+60                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+60-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+61                android:value="androidx.startup" />
+61-->[androidx.emoji2:emoji2:1.2.0] /Users/kwon/.gradle/caches/transforms-3/ec6e2ba61c9a42dd8e0aa44ee71f9dfb/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+62            <meta-data
+62-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/kwon/.gradle/caches/transforms-3/371d4428813d11175307b9e72a350208/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+63                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+63-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/kwon/.gradle/caches/transforms-3/371d4428813d11175307b9e72a350208/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+64                android:value="androidx.startup" />
+64-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/kwon/.gradle/caches/transforms-3/371d4428813d11175307b9e72a350208/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+65        </provider>
+66    </application>
+67
+68</manifest>
