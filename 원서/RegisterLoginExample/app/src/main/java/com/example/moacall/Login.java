@@ -1,4 +1,4 @@
-package com.regit89swc.registerloginexample;
+package com.example.moacall;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
